@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Balances</title>
+</head>
+<body>
+    <h1>Current Balances</h1>
+    <ul>
+        {% for r, amt in balances.items() %}
+            <li>{{ r }}: {{ "%.2f"|format(amt) }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+</body>
+</html>

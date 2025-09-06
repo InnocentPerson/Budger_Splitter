@@ -1,0 +1,183 @@
+{
+    "expenses": [
+        {
+            "name": "grocery",
+            "amount": 1000.0,
+            "payer": "MOHIT",
+            "split": {
+                "MOHIT": 0,
+                "ABHI": 500.0
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "grocery2",
+            "amount": 1000.0,
+            "payer": "MOHIT",
+            "split": {
+                "MOHIT": 0,
+                "ABHI": 333.3333333333333,
+                "JAI": 333.3333333333333
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "grocery3",
+            "amount": 300.0,
+            "payer": "JAI",
+            "split": {
+                "MOHIT": 100.0,
+                "ABHI": 100.0,
+                "JAI": 0
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "SNACKS",
+            "amount": 300.0,
+            "payer": "JAI",
+            "split": {
+                "MOHIT": 100.0,
+                "ABHI": 100.0,
+                "JAI": 0
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "bruno",
+            "amount": 1000.0,
+            "payer": "ABHI",
+            "split": {
+                "MOHIT": 333.3333333333333,
+                "ABHI": 0,
+                "JAI": 333.3333333333333
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "grocery",
+            "amount": 1000.0,
+            "payer": "MOHIT",
+            "split": {
+                "MOHIT": 0,
+                "ABHI": 333.3333333333333,
+                "JAI": 333.3333333333333
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "grocery2",
+            "amount": 1000.0,
+            "payer": "ABHI",
+            "split": {
+                "MOHIT": 333.3333333333333,
+                "ABHI": 0,
+                "JAI": 333.3333333333333
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "grocery3",
+            "amount": 1000.0,
+            "payer": "MOHIT",
+            "split": {
+                "MOHIT": 0,
+                "ABHI": 333.3333333333333,
+                "JAI": 333.3333333333333
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "G1",
+            "amount": 1000.0,
+            "payer": "P1",
+            "split": {
+                "P1": 0,
+                "P2": 333.3333333333333,
+                "P3": 333.3333333333333
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "G2",
+            "amount": 1250.0,
+            "payer": "P2",
+            "split": {
+                "P1": 416.6666666666667,
+                "P2": 0,
+                "P3": 416.6666666666667
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "G3",
+            "amount": 1000.0,
+            "payer": "P3",
+            "split": {
+                "P1": 333.3333333333333,
+                "P2": 333.3333333333333,
+                "P3": 0
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "G11",
+            "amount": 1000.0,
+            "payer": "R1",
+            "split": {
+                "R1": 0,
+                "R2": 333.3333333333333,
+                "R3": 333.3333333333333
+            },
+            "bill_photo": ""
+        },
+        {
+            "name": "wine",
+            "amount": 2500.0,
+            "payer": "rr11",
+            "split": {
+                "rr11": 0,
+                "rr22": 833.3333333333334,
+                "rr33": 833.3333333333334
+            },
+            "bill_photo": "",
+            "date": "2025-09-06 14:12:33"
+        },
+        {
+            "name": "wine",
+            "amount": 2500.0,
+            "payer": "rr11",
+            "split": {
+                "rr11": 0,
+                "rr22": 833.3333333333334,
+                "rr33": 833.3333333333334
+            },
+            "bill_photo": "uploads/mohit_resume.pdf",
+            "date": "2025-09-06 14:12:58"
+        },
+        {
+            "name": "with bill",
+            "amount": 50000.0,
+            "payer": "rr33",
+            "split": {
+                "rr11": 16666.666666666668,
+                "rr22": 16666.666666666668,
+                "rr33": 0
+            },
+            "bill_photo": "",
+            "date": "2025-09-06 14:59:40"
+        },
+        {
+            "name": "with bill",
+            "amount": 6897987.0,
+            "payer": "rr11",
+            "split": {
+                "rr11": 0,
+                "rr22": 2299329.0,
+                "rr33": 2299329.0
+            },
+            "bill_photo": "mohit_resume.pdf",
+            "date": "2025-09-06 15:00:41"
+        }
+    ]
+}

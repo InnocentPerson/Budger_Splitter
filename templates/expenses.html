@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expenses</title>
+</head>
+<body>
+    
+    <h2>Expense History</h2>
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Payer</th>
+        <th>Date</th>
+        <th>Bill</th>
+    </tr>
+    {% for expense in expenses %}
+    <tr>
+        <td>{{ expense['name'] }}</td>
+        <td>{{ expense['amount'] }}</td>
+        <td>{{ expense['payer'] }}</td>
+        <td>{{ expense['date'] }}</td>
+        <td>
+            {% if expense['bill_photo'] %}
+                <a href="{{ url_for('static', filename='uploads/' ~ expense['bill_photo']) }}" target="_blank">
+                    View Bill
+                </a>
+            {% else %}
+                No photo
+            {% endif %}
+        </td>
+    </tr>
+{% endfor %}
+
+</table>
+
+    <a href="/">Back to Home</a>
+</body>
+</html>
