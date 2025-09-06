@@ -1,51 +1,69 @@
-import json
-import os
+import sqlite3
+from datetime import datetime
 
-# ---------- JSON helpers ----------
-def load_json(file_path):
-    if os.path.exists(file_path):
-        try:
-            with open(file_path, "r") as f:
-                content = f.read().strip()
-                if not content:  # file is empty
-                    return {}
-                return json.loads(content)
-        except json.JSONDecodeError:
-            print(f"Warning: {file_path} is corrupted. Starting fresh.")
-            return {}
-    return {}
+DB_FILE = "budget.db"
 
-
-def save_json(file_path, data):
-    with open(file_path, "w") as f:
-        json.dump(data, f, indent=4)
+# ---------- DB Helpers ----------
+def get_connection():
+    return sqlite3.connect(DB_FILE)
 
 # ---------- Roommate Management ----------
-def add_roommate(roommates, name):
-    if name not in roommates:
-        roommates.append(name)
-        print(f"{name} added successfully.")
-    else:
-        print(f"{name} already exists.")
+def add_roommate(name):
+    with get_connection() as conn:
+        cur = conn.cursor()
+        cur.execute("INSERT OR IGNORE INTO roommates (name) VALUES (?)", (name,))
+        conn.commit()
 
-def delete_roommate(roommates, balances, name):
-    if name in roommates:
-        roommates.remove(name)
-        balances.pop(name, None)
-        print(f"{name} deleted successfully.")
-    else:
-        print(f"{name} not found.")
+def delete_roommate(name):
+    with get_connection() as conn:
+        cur = conn.cursor()
+        cur.execute("DELETE FROM roommates WHERE name = ?", (name,))
+        conn.commit()
+
+def get_roommates():
+    with get_connection() as conn:
+        cur = conn.cursor()
+        cur.execute("SELECT name FROM roommates")
+        return [row[0] for row in cur.fetchall()]
 
 # ---------- Expense Management ----------
-def split_expense(amount, payer, roommates):
-    split_amount = amount / len(roommates)
-    split_dict = {}
-    for r in roommates:
-        split_dict[r] = 0 if r == payer else split_amount
-    return split_dict
+def add_expense(name, amount, payer, bill_photo=""):
+    with get_connection() as conn:
+        cur = conn.cursor()
+        # get payer id
+        cur.execute("SELECT id FROM roommates WHERE name = ?", (payer,))
+        payer_id = cur.fetchone()
+        if not payer_id:
+            raise ValueError(f"Payer {payer} not found")
+        payer_id = payer_id[0]
 
-def update_balances(balances, payer, split_dict):
-    for r, amt in split_dict.items():
-        balances[r] = balances.get(r, 0) - amt
-        balances[payer] = balances.get(payer, 0) + amt
-    return balances
+        # insert expense
+        cur.execute(
+            "INSERT INTO expenses (name, amount, payer_id, date, bill_photo) VALUES (?, ?, ?, ?, ?)",
+            (name, amount, payer_id, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), bill_photo),
+        )
+        expense_id = cur.lastrowid
+
+        # split logic
+        roommates = get_roommates()
+        split_amount = amount / len(roommates)
+        for r in roommates:
+            cur.execute("SELECT id FROM roommates WHERE name = ?", (r,))
+            rid = cur.fetchone()[0]
+            share = 0 if r == payer else split_amount
+            cur.execute(
+                "INSERT INTO expense_splits (expense_id, roommate_id, share) VALUES (?, ?, ?)",
+                (expense_id, rid, share),
+            )
+        conn.commit()
+
+def get_expenses():
+    with get_connection() as conn:
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT e.id, e.name, e.amount, r.name, e.date, e.bill_photo
+            FROM expenses e
+            JOIN roommates r ON e.payer_id = r.id
+            ORDER BY e.date DESC
+        """)
+        return cur.fetchall()

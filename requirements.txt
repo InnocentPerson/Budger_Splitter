@@ -1,8 +1,15 @@
-blinker==1.9.0
-click==8.2.1
-colorama==0.4.6
+# --- Core Flask stack ---
 Flask==3.1.2
-itsdangerous==2.2.0
-Jinja2==3.1.6
-MarkupSafe==3.0.2
 Werkzeug==3.1.3
+Jinja2==3.1.6
+click==8.2.1
+itsdangerous==2.2.0
+MarkupSafe==3.0.2
+blinker==1.9.0
+colorama==0.4.6
+
+# --- Database ---
+# sqlite3 is built into Python, no need to install
+# SQLAlchemy is optional, but useful if you don't want raw SQL
+SQLAlchemy==2.0.36
+Flask-SQLAlchemy==3.1.1

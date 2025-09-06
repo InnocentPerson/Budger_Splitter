@@ -6,8 +6,8 @@
 <body>
     <h1>Current Balances</h1>
     <ul>
-        {% for r, amt in balances.items() %}
-            <li>{{ r }}: {{ "%.2f"|format(amt) }}</li>
+        {% for r in balances %}
+            <li>{{ r['name'] }}: {{ "%.2f"|format(r['balance']) }}</li>
         {% endfor %}
     </ul>
     <a href="/">Back to Home</a>

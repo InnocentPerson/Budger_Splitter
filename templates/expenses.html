@@ -17,8 +17,8 @@
     {% for expense in expenses %}
     <tr>
         <td>{{ expense['name'] }}</td>
-        <td>{{ expense['amount'] }}</td>
-        <td>{{ expense['payer'] }}</td>
+        <td>{{ "%.2f"|format(expense['amount']) }}</td>
+        <td>{{ expense['payer_name'] }}</td>
         <td>{{ expense['date'] }}</td>
         <td>
             {% if expense['bill_photo'] %}
@@ -34,6 +34,6 @@
 
 </table>
 
-    <a href="/">Back to Home</a>
+<a href="/">Back to Home</a>
 </body>
 </html>
