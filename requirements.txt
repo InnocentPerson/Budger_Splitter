@@ -1,3 +1,5 @@
+Flask
+gunicorn
 # --- Core Flask stack ---
 Flask==3.1.2
 Werkzeug==3.1.3
